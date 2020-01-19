@@ -20,24 +20,99 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgxEchartsModule } from "ngx-echarts";
 import { CommonElementsModule } from "../common-elements/common-elements.module";
 import { NgxGalleryModule } from "ngx-gallery";
+import { AuthGuard } from '../services/auth/auth.service';
 
 export const routes: Routes = [
-	{ path: '', redirectTo: 'page-blank', pathMatch: 'full' },
-	{ path: 'page-blank', component: PageBlankComponent, data: { title: ':: Lucid Angular :: Pages :: Blank ::' }  },
-	{ path: 'page-profile', component: PageProfileComponent, data: { title: ':: Lucid Angular :: Pages :: Profile ::' } },
-	{ path: 'page-profile2', component: PageProfileV2Component, data: { title: ':: Lucid Angular :: Pages :: Profile - V2 ::' } },
-	{ path: 'page-gallery', component: PageGalleryComponent, data: { title: ':: Lucid Angular :: Pages :: Gallery ::' } },
-	{ path: 'page-timeline', component: PageTimelineComponent, data: { title: ':: Lucid Angular :: Pages :: Timeline ::' } },
-	{ path: 'page-pricing', component: PagePricingComponent, data: { title: ':: Lucid Angular :: Pages :: Pricing ::' } },
-	{ path: 'page-invoices', component: PageInvoicesComponent, data: { title: ':: Lucid Angular :: Pages :: Invoices ::' } },
-	{ path: 'page-invoices2', component: PageInvoicesV2Component, data: { title: ':: Lucid Angular :: Pages :: Invoices - V2 ::' } },
-	{ path: 'page-search-results', component: PageSearchResultsComponent, data: { title: ':: Lucid Angular :: Pages :: Search Results ::' } },
-	{ path: 'page-helper-class', component: PageHelperClassComponent, data: { title: ':: Lucid Angular :: Pages :: Classes ::' } },
-	{ path: 'page-teams-board', component: PageTeamsBoardComponent, data: { title: ':: Lucid Angular :: Pages :: Team ::' } },
-	{ path: 'page-projects-list', component: PageProjectsListComponent, data: { title: ':: Lucid Angular :: Pages :: Projects ::' } },
-	{ path: 'page-maintenance', component: PageProjectsListComponent, data: { title: ':: Lucid Angular :: Pages :: Maintenance ::' } },
-	{ path: 'page-testimonials', component: PageTestimonialsComponent, data: { title: ':: Lucid Angular :: Pages :: Testimonials ::' } },
-	{ path: 'page-faq', component: PageFaqComponent, data: { title: ':: Lucid Angular :: Pages :: Faq ::' } },
+  { path: '', redirectTo: 'page-blank', pathMatch: 'full' },
+  {
+    path: 'page-blank',
+    component: PageBlankComponent,
+    data: { title: ':: Lucid Angular :: Pages :: Blank ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-profile',
+    component: PageProfileComponent,
+    data: { title: ':: Lucid Angular :: Pages :: Profile ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-profile2',
+    component: PageProfileV2Component, data: { title: ':: Lucid Angular :: Pages :: Profile - V2 ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-gallery',
+    component: PageGalleryComponent,
+    data: { title: ':: Lucid Angular :: Pages :: Gallery ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-timeline',
+    component: PageTimelineComponent,
+    data: { title: ':: Lucid Angular :: Pages :: Timeline ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-pricing',
+    component: PagePricingComponent,
+    data: { title: ':: Lucid Angular :: Pages :: Pricing ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-invoices',
+    component: PageInvoicesComponent,
+    data: { title: ':: Lucid Angular :: Pages :: Invoices ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-invoices2',
+    component: PageInvoicesV2Component,
+    data: { title: ':: Lucid Angular :: Pages :: Invoices - V2 ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-search-results',
+    component: PageSearchResultsComponent,
+    data: { title: ':: Lucid Angular :: Pages :: Search Results ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-helper-class',
+    component: PageHelperClassComponent,
+    data: { title: ':: Lucid Angular :: Pages :: Classes ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-teams-board',
+    component: PageTeamsBoardComponent,
+    data: { title: ':: Lucid Angular :: Pages :: Team ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-projects-list',
+    component: PageProjectsListComponent,
+    data: { title: ':: Lucid Angular :: Pages :: Projects ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-maintenance',
+    component: PageProjectsListComponent,
+    data: { title: ':: Lucid Angular :: Pages :: Maintenance ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-testimonials',
+    component: PageTestimonialsComponent,
+    data: { title: ':: Lucid Angular :: Pages :: Testimonials ::' },
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'page-faq',
+    component: PageFaqComponent,
+    data: { title: ':: Lucid Angular :: Pages :: Faq ::' },
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
@@ -65,8 +140,8 @@ export const routes: Routes = [
     NgxEchartsModule,
     CommonElementsModule,
     NgxGalleryModule,
-		RouterModule.forChild(routes)
+    RouterModule.forChild(routes)
   ],
   exports: []
 })
-export class PagesModule {}
+export class PagesModule { }

@@ -21,7 +21,6 @@ export class GCComponent implements OnInit {
   }
   ngOnInit(): void {}
   loadLineChartOptions(data, color) {
-      debugger;
     let chartOption: EChartOption;
     let xAxisData: Array<any> = new Array<any>();
 
