@@ -20,7 +20,7 @@ export class PageRegisterComponent implements OnInit {
     ngOnInit() {
     }
 
-    onSubmit(registrationForm: NgForm) {
+    onSubmit(registrationForm: NgForm, signupFullname) {
         this.newUser = this.pageRegisterSvc.getNewUser(registrationForm.form.value);
         this.pageRegisterSvc.saveUser(this.newUser).subscribe((response: DataResponse) => {
             if (response.code === 1) {

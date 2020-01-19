@@ -12,11 +12,11 @@
 					<div class="body">
 						<form name="form" class="form-auth-small" #registrationForm="ngForm"
 							(ngSubmit)="registrationForm.form.valid && onSubmit(registrationForm)"
-							[mustMatch]="['password', 'confirmPassword']" validate>
+							[mustMatch]="['signUpPassword', 'signUpConfirmPassword']" novalidate>
 							<div class="form-group">
 								<label for="signup-fullName" class="control-label sr-only">Full Name</label>
 								<input type="text" class="form-control" id="signup-fullName" placeholder="Your Name"
-									[(ngModel)]="newUser.signupFullname" ngModel required #signupFullname="ngModel"
+									[(ngModel)]="newUser.signupFullname" required #signupFullname="ngModel" [ngClass]="{ 'is-invalid': registrationForm.submitted && signupFullname.invalid }"
 									name="signUpFullName" autofocus>
 								<div *ngIf="registrationForm.submitted && signupFullname.invalid"
 									class="invalid-feedback">
@@ -26,7 +26,7 @@
 							<div class="form-group">
 								<label for="signup-email" class="control-label sr-only">Email</label>
 								<input type="email" class="form-control" id="signup-email" placeholder="Your email"
-									[(ngModel)]="newUser.signUpEmail" ngModel required #signUpEmail="ngModel"
+									[(ngModel)]="newUser.signUpEmail" required #signUpEmail="ngModel" [ngClass]="{ 'is-invalid': registrationForm.submitted && signUpEmail.invalid }"
 									name="signUpEmail" email>
 								<div *ngIf="registrationForm.submitted && signUpEmail.invalid" class="invalid-feedback">
 									<div *ngIf="signUpEmail.errors.required">Email is required</div>
@@ -36,7 +36,7 @@
 							<div class="form-group">
 								<label for="signup-password" class="control-label sr-only">Password</label>
 								<input type="password" class="form-control" id="signup-password" placeholder="Password"
-									[(ngModel)]="newUser.signUpPassword" ngModel required #signUpPassword="ngModel"
+									[(ngModel)]="newUser.signUpPassword" required #signUpPassword="ngModel" [ngClass]="{ 'is-invalid': registrationForm.submitted && signUpPassword.invalid }"
 									name="signUpPassword" minlength="6">
 								<div *ngIf="registrationForm.submitted && signUpPassword.invalid"
 									class="invalid-feedback">
@@ -49,7 +49,7 @@
 								<label for="signup-confirmPassword" class="control-label sr-only">Confirm
 									Password</label>
 								<input type="password" class="form-control" id="signup-confirmPassword"
-									placeholder="Confirm Password" ngModel required #signUpConfirmPassword="ngModel"
+									placeholder="Confirm Password" required #signUpConfirmPassword="ngModel" [ngClass]="{ 'is-invalid': registrationForm.submitted && signUpConfirmPassword.invalid }"
 									[(ngModel)]="newUser.signUpConfirmPassword" name="signUpConfirmPassword"
 									minlength="6">
 								<div *ngIf="registrationForm.submitted && signUpConfirmPassword.invalid"
@@ -59,8 +59,7 @@
 									<div *ngIf="signUpConfirmPassword.errors.mustMatch">Passwords must match</div>
 								</div>
 							</div>
-							<button type="submit" class="btn btn-primary btn-lg btn-block"
-								[disabled]="!registrationForm.form.valid">REGISTER</button>
+							<button type="submit" class="btn btn-primary btn-lg btn-block">REGISTER</button>
 							<div class="bottom">
 								<span class="helper-text">Already have an account? <a
 										[routerLink]="['/authentication/page-login']">Login</a></span>
