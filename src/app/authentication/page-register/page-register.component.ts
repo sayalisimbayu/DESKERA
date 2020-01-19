@@ -24,7 +24,7 @@ export class PageRegisterComponent implements OnInit {
         this.newUser = this.pageRegisterSvc.getNewUser(registrationForm.form.value);
         this.pageRegisterSvc.saveUser(this.newUser).subscribe((response: DataResponse) => {
             if (response.code === 1) {
-                this.submitted = true;
+                this.submitted = false;
                 this.router.navigate(['/authentication/page-login']);
             }
         });
