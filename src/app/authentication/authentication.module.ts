@@ -13,15 +13,28 @@ import { PageTryLaterComponent } from './page-try-later/page-try-later.component
 import { PagesModule } from '../pages/pages.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { PageRegisterService } from './page-register/page-register.service';
+import { MustMatchDirective } from '../custom/must-match.directive';
 
 @NgModule({
-	declarations: [PageLoginComponent, AuthenticationComponent, PageRegisterComponent, PageLockscreenComponent, PageForgotPasswordComponent, PageNotFoundComponent, PageForbiddonErrorComponent, PageIsErrorComponent, PageTryLaterComponent],
+	declarations: [
+		PageLoginComponent,
+		AuthenticationComponent,
+		PageRegisterComponent,
+		PageLockscreenComponent,
+		PageForgotPasswordComponent,
+		PageNotFoundComponent,
+		PageForbiddonErrorComponent,
+		PageIsErrorComponent,
+		PageTryLaterComponent,
+		MustMatchDirective],
 	imports: [
 		CommonModule,
 		routing,
 		PagesModule,
-        RouterModule,
-        FormsModule
-	]
+		RouterModule,
+		FormsModule
+	],
+	providers: [PageRegisterService]
 })
 export class AuthenticationModule { }
