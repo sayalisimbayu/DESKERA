@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
         if (idToken) {
             const cloned = req.clone({
-                url: (environment.dev ? environment.devDomain : environment.apiDomain) + '/api/' + req.url,
+                url: (environment.apiDomain) + '/api/' + req.url,
                 headers: req.headers.set('Authorization',
                     'Bearer ' + idToken),
             });
@@ -34,7 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
             );
         } else {
             const cloned = req.clone({
-                url: (environment.dev ? environment.devDomain : environment.apiDomain) + '/api/' + req.url,
+                url: (environment.apiDomain) + '/api/' + req.url,
             });
             return next.handle(cloned);
         }

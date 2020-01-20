@@ -1,13 +1,13 @@
-import { Injectable, Inject } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Injectable, Inject } from '@Angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs/Rx';
 import { Auth, Token } from '../../models/auth.model';
 import { AppSetting } from '../../models/appsetting.model';
 import { DataResponse } from '../../models/data-response.model';
 import { User, AppPermission } from '../../models/user.model';
+import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 @Injectable({
     providedIn: 'root',
@@ -17,10 +17,10 @@ export class AuthService {
     login(auth: Auth) {
         return this.http.post<Token>('auth/login', auth)
             .pipe(map(res => {
+                debugger;
                 this.setSession(res);
             }))
-            .merge(this.fetchAppsettings())
-            .shareReplay();
+            .pipe(switchMap(() => this.fetchAppsettings()));
     }
     fetchpermission(username: string): Observable<AppPermission[]> {
         return this.http.get<DataResponse>('user/' + username + '/permissions').pipe(map((res: DataResponse) => {
@@ -96,8 +96,7 @@ export class AuthService {
             return this.http.get<Token>('auth/refresh')
                 .pipe(map(res => {
                     this.setSession(res);
-                }))
-                .shareReplay();
+                }));
         } else {
             return null;
         }

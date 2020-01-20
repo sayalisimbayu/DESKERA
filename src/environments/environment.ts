@@ -5,7 +5,5 @@
 
 export const environment = {
   production: false,
-  dev: true,
   apiDomain: 'https://localhost:44341/',
-  devDomain: 'http://localposapi.simbayu.in/',
 };
